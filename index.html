@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grazy Grace | Artisan Grazing Boards Cardiff</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink: #FFB6C1;
+            --light-pink: #FFF0F3;
+            --burgundy: #800020;
+            --dark-burgundy: #4A0012;
+            --cream: #FFF8F0;
+            --text-dark: #2C1810;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 248, 240, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(128, 0, 32, 0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--burgundy);
+            font-style: italic;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--burgundy);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--burgundy);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--pink) 50%, var(--burgundy) 100%);
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            display: block;
+            font-style: italic;
+            font-size: 3rem;
+            color: var(--cream);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: white;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: var(--burgundy);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(128, 0, 32, 0.3);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(128, 0, 32, 0.4);
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .float-item {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .float-item:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .float-item:nth-child(2) { top: 60%; left: 85%; animation-delay: 1s; }
+        .float-item:nth-child(3) { top: 80%; left: 20%; animation-delay: 2s; }
+        .float-item:nth-child(4) { top: 30%; left: 80%; animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        /* Menu Section */
+        .menu-section {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--pink);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(128, 0, 32, 0.15);
+        }
+
+        .menu-card-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--pink), var(--burgundy));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .menu-card-content {
+            padding: 2rem;
+        }
+
+        .menu-card h3 {
+            font-size: 1.5rem;
+            color: var(--burgundy);
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-card p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            color: var(--burgundy);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 1rem;
+            background: var(--burgundy);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: var(--dark-burgundy);
+            transform: scale(1.05);
+        }
+
+        /* Custom Board Builder */
+        .custom-board-section {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, var(--light-pink), white);
+        }
+
+        .builder-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(128, 0, 32, 0.1);
+        }
+
+        .builder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .builder-category {
+            background: var(--light-pink);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .builder-category:hover {
+            border-color: var(--burgundy);
+        }
+
+        .builder-category h3 {
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .builder-option {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0;
+            cursor: pointer;
+        }
+
+        .builder-option input[type="checkbox"] {
+            margin-right: 0.5rem;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--burgundy);
+            cursor: pointer;
+        }
+
+        .builder-total {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--burgundy);
+            color: white;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .total-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--pink);
+        }
+
+        /* Booking Section */
+        .booking-section {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .booking-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(128, 0, 32, 0.1);
+            border: 2px solid var(--light-pink);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--burgundy);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--pink);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--burgundy), var(--dark-burgundy));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(128, 0, 32, 0.3);
+        }
+
+        /* Payment Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close-modal:hover {
+            color: var(--burgundy);
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .payment-method {
+            padding: 1rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-method:hover,
+        .payment-method.selected {
+            border-color: var(--burgundy);
+            background: var(--light-pink);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 6rem 5%;
+            background: var(--burgundy);
+            color: white;
+            position: relative;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: var(--pink);
+        }
+
+        .about-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--pink);
+            display: block;
+        }
+
+        /* Delivery Info */
+        .delivery-info {
+            background: var(--light-pink);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            border-left: 4px solid var(--burgundy);
+        }
+
+        .delivery-info h3 {
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+        }
+
+        .delivery-info ul {
+            list-style: none;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .delivery-info li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .delivery-info li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--burgundy);
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-burgundy);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--pink);
+            transform: translateY(-5px);
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--burgundy);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 3000;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero h1 span {
+                font-size: 2rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .loader {
+            display: none;
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--burgundy);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .postcode-hint {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo-container">
+            <span class="logo-icon">🍇</span>
+            <span class="logo-text">Grazy Grace</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#custom">Custom</a></li>
+            <li><a href="#booking">Book Now</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+        <div class="cart-icon" onclick="showCart()">
+            🛒
+            <span class="cart-count" id="cartCount">0</span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="floating-elements">
+            <div class="float-item">🧀</div>
+            <div class="float-item">🍇</div>
+            <div class="float-item">🥂</div>
+            <div class="float-item">🍓</div>
+        </div>
+        <div class="hero-content">
+            <h1>Grazy Grace <span>Artisan Grazing Boards</span></h1>
+            <p>Cardiff's finest handcrafted grazing boards featuring premium Welsh cheeses, local charcuterie, and seasonal accompaniments.</p>
+            <a href="#booking" class="cta-button">Book Your Board</a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section" id="menu">
+        <div class="section-header">
+            <h2>Our Collections</h2>
+            <p>Each board is handcrafted with love and the finest Welsh ingredients</p>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="menu-card-image">🧀</div>
+                <div class="menu-card-content">
+                    <h3>The Classic Grace</h3>
+                    <p>A timeless selection of three premium Welsh cheeses, cured meats, fresh fruits, nuts, and artisan crackers. Perfect for 4-6 people.</p>
+                    <div class="price">£65.00</div>
+                    <button class="add-to-cart" onclick="addToCart('The Classic Grace', 65)">
+                        Add to Order
+                    </button>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-image">🌸</div>
+                <div class="menu-card-content">
+                    <h3>Blooming Board</h3>
+                    <p>Vegetarian delight featuring soft cheeses, marinated vegetables, dried fruits, honeycomb, and edible flowers. Serves 6-8.</p>
+                    <div class="price">£95.00</div>
+                    <button class="add-to-cart" onclick="addToCart('Blooming Board', 95)">
+                        Add to Order
+                    </button>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-image">🥂</div>
+                <div class="menu-card-content">
+                    <h3>Luxury Celebration</h3>
+                    <p>Our grandest board with truffle cheeses, prosciutto, smoked salmon, caviar, Welsh sparkling wine pairing, and chocolate truffles. Serves 10-12.</p>
+                    <div class="price">£195.00</div>
+                    <button class="add-to-cart" onclick="addToCart('Luxury Celebration', 195)">
+                        Add to Order
+                    </button>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-image">🍓</div>
+                <div class="menu-card-content">
+                    <h3>Sweet & Savory</h3>
+                    <p>Dessert-focused board with brie, dark chocolate, fresh berries, macarons, and dessert wines. Perfect finale for any event.</p>
+                    <div class="price">£75.00</div>
+                    <button class="add-to-cart" onclick="addToCart('Sweet & Savory', 75)">
+                        Add to Order
+                    </button>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-image">🌿</div>
+                <div class="menu-card-content">
+                    <h3>Garden Fresh</h3>
+                    <p>Seasonal vegetables, hummus, tzatziki, feta, olives, and warm pita. A Mediterranean journey for 6-8 guests.</p>
+                    <div class="price">£85.00</div>
+                    <button class="add-to-cart" onclick="addToCart('Garden Fresh', 85)">
+                        Add to Order
+                    </button>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-image">✨</div>
+                <div class="menu-card-content">
+                    <h3>Build Your Own</h3>
+                    <p>Create your perfect board! Choose from our selection of cheeses, meats, and accompaniments. Fully customizable.</p>
+                    <div class="price">From £50</div>
+                    <button class="add-to-cart" onclick="document.getElementById('custom').scrollIntoView({behavior: 'smooth'})">
+                        Start Building
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Board Builder -->
+    <section class="custom-board-section" id="custom">
+        <div class="section-header">
+            <h2>Build Your Custom Board</h2>
+            <p>Create your perfect grazing experience</p>
+        </div>
+        <div class="builder-container">
+            <div class="builder-grid">
+                <div class="builder-category">
+                    <h3>Cheeses (Choose 2-4)</h3>
+                    <label class="builder-option">
+                        <input type="checkbox" value="8" onchange="updateTotal()">
+                        <span>Cheddar (£8)</span>
+                    </label>
+                    <label class="builder-option">
+                        <input type="checkbox" value="9" onchange="updateTotal()">
+                        <span>Brie (£9)</span>
+                    </label>
+                    <label class="builder-option">
+                        <input type="checkbox" value="10" onchange="updateTotal()">
+                        <span>Blue Stilton (£10)</span>
+                    </label>
+                    <label class="builder-option">
+                        <input type="checkbox" value="9" onchange="updateTotal()">
+                        <span>Goats Cheese (£9)</span>
+                    </label>
+                    <label class="builder-option">
+                        <input type="checkbox" value="12" onchange="updateTotal()">
+                        <span>Truffle Cheddar (£12)</span>
+                    </label>
+                    <label class="builder-option">
+                        <input type="checkbox" value="11" onchange="updateTotal()">
+                        <span>Welsh Caerphilly (£11)</span>
+                    </label>
+                </div>
+
+                <div class="builder-category">
+                    <h3>Meats (Choose 2-3)</h3>
+                    <label class="builder-option">
+                        <input type="checkbox" value="7" onchange="updateTotal()">
+                        <span>Prosciutto (£7)</span>
+                    </label>
+                    <label class="builder-option">
+                        <input type="checkbox" value="6" onchange="updateTotal()">
+                        <span>Salami (£6)</span>
+                    </label>
+                    <label class="builder-option">
+                        <input type="checkbox" value="8" onchange="updateTotal()">
+                        <span>Chorizo (£8)</span>
+                    </label>
+                    <label class="builder-option">
+                        <input type="checkbox" value="9" onchange="updateTotal()">
+                        <span>Smoked Salmon (£9)</span>
+                    </label>
+                    <label class="builder-option">
+                        <input type="checkbox" value="7" onchange="updateTotal()">
+                        <span>Welsh Lamb Sausage (£7)</span>
+                    </label>
+                </div>
+
+                <div class="builder-category">
+                    <h3>Accompaniments</h3>
+                    <label class="builder-option">
+                        <input type="checkbox" value="4" onchange="updateTotal()">
+                        <span>Olives (£4)</span>
+                    </label>
+                    <label class="builder-option">
+                        <input type="checkbox" value="5" onchange="updateTotal()">
+                        <span>Honeycomb (£5)</span>
+                    </label>
+                    <label class="builder-option">
+                        <input type="checkbox" value="3" onchange="updateTotal()">
+                        <span>Artisan Crackers (£3)</span>
+                    </label>
+                    <label class="builder-option">
+                        <input type="checkbox" value="4" onchange="updateTotal()">
+                        <span>Fig Jam (£4)</span>
+                    </label>
+                    <label class="builder-option">
+                        <input type="checkbox" value="5" onchange="updateTotal()">
+                        <span>Fresh Grapes (£5)</span>
+                    </label>
+                    <label class="builder-option">
+                        <input type="checkbox" value="6" onchange="updateTotal()">
+                        <span>Mixed Nuts (£6)</span>
+                    </label>
+                    <label class="builder-option">
+                        <input type="checkbox" value="4" onchange="updateTotal()">
+                        <span>Dried Fruits (£4)</span>
+                    </label>
+                </div>
+
+                <div class="builder-category">
+                    <h3>Extras</h3>
+                    <label class="builder-option">
+                        <input type="checkbox" value="5" onchange="updateTotal()">
+                        <span>Edible Flowers (£5)</span>
+                    </label>
+                    <label class="builder-option">
+                        <input type="checkbox" value="8" onchange="updateTotal()">
+                        <span>Chocolate Truffles (£8)</span>
+                    </label>
+                    <label class="builder-option">
+                        <input type="checkbox" value="6" onchange="updateTotal()">
+                        <span>Macarons (£6)</span>
+                    </label>
+                    <label class="builder-option">
+                        <input type="checkbox" value="15" onchange="updateTotal()">
+                        <span>Welsh Sparkling Wine (£15)</span>
+                    </label>
+                    <label class="builder-option">
+                        <input type="checkbox" value="3" onchange="updateTotal()">
+                        <span>Fresh Bread (£3)</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="builder-total">
+                <h3>Your Custom Board Total</h3>
+                <div class="total-price" id="customTotal">£0</div>
+                <button class="cta-button" onclick="addCustomToCart()" style="margin-top: 1rem;">
+                    Add Custom Board to Order
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking-section" id="booking">
+        <div class="section-header">
+            <h2>Book Your Experience</h2>
+            <p>Reserve your grazing board for collection or delivery in Cardiff</p>
+        </div>
+        <div class="booking-container">
+            <form id="bookingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required placeholder="Grace Smith">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required placeholder="grace@example.co.uk">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Telephone Number</label>
+                        <input type="tel" id="phone" required placeholder="07700 900123">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Event Date</label>
+                        <input type="date" id="date" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="postcode">Delivery Postcode</label>
+                        <input type="text" id="postcode" required placeholder="CF10 1AA" style="text-transform: uppercase;">
+                        <div class="postcode-hint">Cardiff and surrounding areas. Free collection from CF11.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="delivery">Collection or Delivery?</label>
+                        <select id="delivery" required onchange="updateDelivery()">
+                            <option value="">Please select...</option>
+                            <option value="collection">Collection from Pontcanna (Free)</option>
+                            <option value="cardiff">Cardiff Delivery (£5)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="board">Select Your Board</label>
+                    <select id="board" required>
+                        <option value="">Choose a board...</option>
+                        <option value="classic">The Classic Grace - £65</option>
+                        <option value="blooming">Blooming Board - £95</option>
+                        <option value="luxury">Luxury Celebration - £195</option>
+                        <option value="sweet">Sweet & Savory - £75</option>
+                        <option value="garden">Garden Fresh - £85</option>
+                        <option value="custom">Custom Build Your Own - From £50</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="guests">Number of Guests</label>
+                    <input type="number" id="guests" min="1" max="50" required placeholder="Approximate number">
+                </div>
+                <div class="form-group">
+                    <label for="notes">Special Requests / Dietary Requirements</label>
+                    <textarea id="notes" rows="3" placeholder="Any allergies, preferences, or occasion details..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Proceed to Payment</button>
+            </form>
+
+            <div class="delivery-info">
+                <h3>Delivery Information</h3>
+                <ul>
+                    <li>Free collection from our Pontcanna kitchen (CF11)</li>
+                    <li>£5 delivery anywhere in Cardiff (same day available)</li>
+                    <li>Minimum 48 hours notice required for all orders</li>
+                    <li>All boards packaged in eco-friendly, insulated boxes</li>
+                    <li>Delivery available Tuesday - Saturday, 10am - 6pm</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-content">
+            <h2>Our Story</h2>
+            <p>Founded in Cardiff with a passion for bringing people together over beautiful food, Grazy Grace started as a small kitchen experiment in Pontcanna and grew into a beloved Welsh artisan business.</p>
+            <p>Every board we create is a canvas, carefully curated with seasonal ingredients sourced from Welsh farms and local Cardiff suppliers. We believe that food should not only taste exceptional but create lasting memories.</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="stat1">0</span>
+                    <span>Boards Created</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="stat2">0</span>
+                    <span>Happy Clients</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="stat3">0</span>
+                    <span>5-Star Reviews</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#">IG</a>
+            <a href="#">FB</a>
+            <a href="#">WA</a>
+        </div>
+        <p>&copy; 2024 Grazy Grace Ltd. All rights reserved.</p>
+        <p style="margin-top: 1rem; opacity: 0.8; font-size: 0.9rem;">Registered in Wales • Made with love and lots of Welsh cheese</p>
+        <p style="margin-top: 0.5rem; opacity: 0.6; font-size: 0.8rem;">Pontcanna, Cardiff CF11</p>
+    </footer>
+
+    <!-- Payment Modal -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 style="color: #800020; margin-bottom: 1rem;">Complete Your Order</h2>
+            <p style="margin-bottom: 2rem;">Select your payment method:</p>
+            
+            <div class="payment-methods">
+                <div class="payment-method" onclick="selectPayment(this)">
+                    <div style="font-size: 2rem;">💳</div>
+                    <div>Credit/Debit Card</div>
+                </div>
+                <div class="payment-method" onclick="selectPayment(this)">
+                    <div style="font-size: 2rem;">📱</div>
+                    <div>Apple/Google Pay</div>
+                </div>
+                <div class="payment-method" onclick="selectPayment(this)">
+                    <div style="font-size: 2rem;">🏦</div>
+                    <div>Bank Transfer</div>
+                </div>
+            </div>
+
+            <div id="cardDetails" style="display: none; margin-top: 2rem;">
+                <div class="form-group">
+                    <label>Card Number</label>
+                    <input type="text" placeholder="1234 5678 9012 3456" maxlength="19">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Expiry Date</label>
+                        <input type="text" placeholder="MM/YY" maxlength="5">
+                    </div>
+                    <div class="form-group">
+                        <label>CVV</label>
+                        <input type="text" placeholder="123" maxlength="3">
+                    </div>
+                </div>
+            </div>
+
+            <div class="loader" id="paymentLoader"></div>
+            
+            <button class="submit-btn" onclick="processPayment()" style="margin-top: 2rem;">
+                Confirm Payment
+            </button>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        Order confirmed! We'll be in touch shortly.
+    </div>
+
+    <script>
+        // Cart functionality
+        let cart = [];
+        let cartTotal = 0;
+        let deliveryFee = 0;
+
+        function addToCart(item, price) {
+            cart.push({ item, price });
+            cartTotal += price;
+            updateCartCount();
+            
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Added!';
+            btn.style.background = '#2ecc71';
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = '';
+            }, 1500);
+            
+            showSuccessMessage(item + ' added to your order!');
+        }
+
+        function updateCartCount() {
+            document.getElementById('cartCount').textContent = cart.length;
+        }
+
+        function showCart() {
+            if (cart.length === 0) {
+                showSuccessMessage('Your basket is empty!');
+                return;
+            }
+            let cartList = cart.map((item, index) => 
+                (index + 1) + '. ' + item.item + ' - £' + item.price
+            ).join('\n');
+            let totalWithDelivery = cartTotal + deliveryFee;
+            alert('Your Order:\n\n' + cartList + '\n\nDelivery: £' + deliveryFee + '\nTotal: £' + totalWithDelivery + '\n\nProceed to booking to complete your order!');
+        }
+
+        function showSuccessMessage(msg) {
+            const successDiv = document.getElementById('successMessage');
+            successDiv.textContent = msg;
+            successDiv.style.display = 'block';
+            setTimeout(() => {
+                successDiv.style.display = 'none';
+            }, 3000);
+        }
+
+        // Custom board builder
+        function updateTotal() {
+            const checkboxes = document.querySelectorAll('.builder-option input[type="checkbox"]:checked');
+            let total = 0;
+            checkboxes.forEach(box => {
+                total += parseInt(box.value);
+            });
+            total = total > 0 ? total + 15 : 0;
+            document.getElementById('customTotal').textContent = '£' + total;
+            return total;
+        }
+
+        function addCustomToCart() {
+            const total = updateTotal();
+            if (total === 0) {
+                showSuccessMessage('Please select some items first!');
+                return;
+            }
+            addToCart('Custom Build Your Own Board', total);
+        }
+
+        function updateDelivery() {
+            const delivery = document.getElementById('delivery').value;
+            deliveryFee = delivery === 'cardiff' ? 5 : 0;
+        }
+
+        // Booking form
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('paymentModal').classList.add('active');
+        });
+
+        function closeModal() {
+            document.getElementById('paymentModal').classList.remove('active');
+            document.getElementById('cardDetails').style.display = 'none';
+            document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+        }
+
+        function selectPayment(element) {
+            document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+            element.classList.add('selected');
+            
+            if (element.textContent.includes('Card')) {
+                document.getElementById('cardDetails').style.display = 'block';
+            } else {
+                document.getElementById('cardDetails').style.display = 'none';
+            }
+        }
+
+        function processPayment() {
+            const loader = document.getElementById('paymentLoader');
+            loader.style.display = 'block';
+            
+            setTimeout(() => {
+                loader.style.display = 'none';
+                closeModal();
+                showSuccessMessage('Payment successful! Check your email for confirmation.');
+                cart = [];
+                cartTotal = 0;
+                deliveryFee = 0;
+                updateCartCount();
+                document.getElementById('bookingForm').reset();
+                document.querySelectorAll('.builder-option input').forEach(box => box.checked = false);
+                updateTotal();
+            }, 2000);
+        }
+
+        // Animated counters
+        function animateCounter(id, target, duration) {
+            let current = 0;
+            const increment = target / (duration / 16);
+            const element = document.getElementById(id);
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current);
+            }, 16);
+        }
+
+        // Intersection Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('about-section')) {
+                        animateCounter('stat1', 1500, 2000);
+                        animateCounter('stat2', 1200, 2000);
+                        animateCounter('stat3', 350, 2000);
+                    }
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        // Observe elements
+        document.querySelectorAll('.menu-card, .about-section, .builder-container').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s, transform 0.6s';
+            observer.observe(el);
+        });
+
+        // Set minimum date to today
+        document.getElementById('date').min = new Date().toISOString().split('T')[0];
+
+        // Postcode formatting
+        document.getElementById('postcode').addEventListener('input', function(e) {
+            e.target.value = e.target.value.toUpperCase();
+        });
+    </script>
+</body>
+</html>
